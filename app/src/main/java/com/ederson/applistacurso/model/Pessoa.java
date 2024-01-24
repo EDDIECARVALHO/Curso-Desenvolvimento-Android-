@@ -48,7 +48,7 @@ public class Pessoa {
 
     // To String - Para Textos - Para Strings de Caracteres
 
-    @Override
+    @Override     // subescrever anotacion
     public String toString() {
         return "Pessoa{" +
                 "primeiroNome='" + primeiroNome + '\'' +
