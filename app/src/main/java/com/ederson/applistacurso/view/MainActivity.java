@@ -2,6 +2,7 @@ package com.ederson.applistacurso.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,10 @@ import com.ederson.applistacurso.controller.PessoaController;
 import com.ederson.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
+
+    SharedPreferences preferences;
+    public static final String NOME_PREFERENCES = "pref_listavip";
+    
 
     Pessoa pessoa;
     Pessoa outraPessoa;
@@ -36,9 +41,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        preferences = getSharedPreferences(NOME_PREFERENCES,0);
+        SharedPreferences.Editor listaVip = preferences.edit();         
         PessoaController controler = new PessoaController();
-
         pessoa = new Pessoa();
+
+
         // Atribuir conteúdo, dados valores para o objeto
         // Conforme o seu MODELO, TEMPLATE
         pessoa.setPrimeiroNome("EDIIE");
@@ -97,6 +105,11 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(MainActivity.this,"Salvo "+pessoa.toString(), Toast.LENGTH_LONG).show();
 
+                listaVip.putString("primeiroNome",pessoa.getPrimeiroNome());
+                listaVip.putString("sobreNome",pessoa.getSobreNome());
+                listaVip.putString("nomeCurso",pessoa.getCursoDesejado());
+                listaVip.putString("telefoneContato",pessoa.getTelefoneContato());
+                listaVip.apply();
 
                 PessoaController controller = null;
                 controller.salvar(pessoa);
