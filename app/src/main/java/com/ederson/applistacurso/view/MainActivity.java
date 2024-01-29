@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ederson.applistacurso.R;
+import com.ederson.applistacurso.controller.PessoaController;
 import com.ederson.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        PessoaController controler = new PessoaController();
 
         pessoa = new Pessoa();
         // Atribuir conteúdo, dados valores para o objeto
@@ -94,6 +97,9 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(MainActivity.this,"Salvo "+pessoa.toString(), Toast.LENGTH_LONG).show();
 
+
+                PessoaController controller = null;
+                controller.salvar(pessoa);
             }
         });
 
