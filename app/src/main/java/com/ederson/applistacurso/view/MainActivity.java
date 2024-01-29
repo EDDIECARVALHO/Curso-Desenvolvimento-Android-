@@ -42,39 +42,33 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         preferences = getSharedPreferences(NOME_PREFERENCES,0);
-        SharedPreferences.Editor listaVip = preferences.edit();         
+        SharedPreferences.Editor listaVip = preferences.edit();
+
         PessoaController controler = new PessoaController();
+
+
         pessoa = new Pessoa();
 
 
-        // Atribuir conteúdo, dados valores para o objeto
-        // Conforme o seu MODELO, TEMPLATE
-        pessoa.setPrimeiroNome("EDIIE");
-        pessoa.setSobreNome("Carvalho");
-        pessoa.setCursoDesejado("Android");
-        pessoa.setTelefoneContato("11-98989595");
-
-        outraPessoa = new Pessoa();
-        outraPessoa.setPrimeiroNome("Luiz");
-        outraPessoa.setSobreNome("Carlos");
-        outraPessoa.setCursoDesejado("Android");
-        outraPessoa.setTelefoneContato("11-333366");
-
+        String defValue;
+        pessoa.setPrimeiroNome(preferences.getString( "primeiroNome", ""));
+        pessoa.setSobreNome(preferences.getString( "sobreNome", ""));
+        pessoa.setCursoDesejado(preferences.getString( "nomeCurso", ""));
+        pessoa.setTelefoneContato(preferences.getString( "telefoneContato", ""));
 
         editPrimeiroNome =findViewById(R.id.editPrimeiroNome);
         editSobreNomeAluno =findViewById(R.id.editSobreNomeAluno);
         editNomeCurso =findViewById(R.id.editNomeCurso);
         editTelefoneContato =findViewById(R.id.editTelefoneContato);
 
-        btnLimpar = findViewById(R.id.btnLimpar);
-        btnSalvar = findViewById(R.id.btnSalvar);
-        btnFinalizar = findViewById(R.id.btnFinalizar);
-
-
         editPrimeiroNome.setText(pessoa.getPrimeiroNome());
         editSobreNomeAluno.setText(pessoa.getSobreNome());
         editNomeCurso.setText(pessoa.getCursoDesejado());
         editTelefoneContato.setText(pessoa.getTelefoneContato());
+
+        btnLimpar = findViewById(R.id.btnLimpar);
+        btnSalvar = findViewById(R.id.btnSalvar);
+        btnFinalizar = findViewById(R.id.btnFinalizar);
 
         btnLimpar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,16 +120,10 @@ public class MainActivity extends AppCompatActivity {
         dadosPessoa += "Telefone de Contato: ";
         dadosPessoa += pessoa.getTelefoneContato();
 
-        dadosOutraPessoa = "Primeiro nome: ";
-        dadosOutraPessoa += outraPessoa.getPrimeiroNome();
-        dadosOutraPessoa += "Sobrenome: ";
-        dadosOutraPessoa += outraPessoa.getSobreNome();
-        dadosOutraPessoa += "Curso Desejado: ";
-        dadosOutraPessoa += "Telefone de Contato: ";
-        dadosOutraPessoa += outraPessoa.getTelefoneContato();
+
 
         Log.i("POO_LOG" ,pessoa.toString());
-        Log.i("POO_LOG" ,outraPessoa.toString());
+       // Log.i("POO_LOG" ,outraPessoa.toString());
 
     }
 }
